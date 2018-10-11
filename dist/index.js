@@ -252,17 +252,22 @@ exports.default = {
       });
     },
     capture: function capture() {
+      var _canvas = this.getCanvas();
+
+      if (!_canvas) return undefined;
       return this.getCanvas().toDataURL(this.screenshotFormat);
     },
     getCanvas: function getCanvas() {
       var video = this.$refs.video;
       if (!this.ctx) {
-        var _canvas = document.createElement('canvas');
-        _canvas.height = video.videoHeight;
-        _canvas.width = video.videoWidth;
-        this.canvas = _canvas;
+        var _canvas2 = document.createElement('canvas');
+        _canvas2.height = video.videoHeight;
+        _canvas2.width = video.videoWidth;
 
-        this.ctx = _canvas.getContext('2d');
+        if (_canvas.width <= 0) return undefined;
+
+        this.canvas = _canvas2;
+        this.ctx = _canvas2.getContext('2d');
       }
 
       var ctx = this.ctx,

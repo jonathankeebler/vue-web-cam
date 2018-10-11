@@ -179,6 +179,9 @@ export default {
         .catch(error => this.$emit('error', error));
     },
     capture() {
+	  let _canvas = this.getCanvas();
+
+	  if(!_canvas) return undefined;
       return this.getCanvas().toDataURL(this.screenshotFormat);
     },
     getCanvas() {
@@ -187,8 +190,10 @@ export default {
         let canvas = document.createElement('canvas');
         canvas.height = video.videoHeight;
         canvas.width = video.videoWidth;
-        this.canvas = canvas;
+		
+		if(_canvas.width <= 0) return undefined;
 
+		this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
       }
 
