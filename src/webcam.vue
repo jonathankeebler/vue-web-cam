@@ -191,7 +191,7 @@ export default {
         canvas.height = video.videoHeight;
         canvas.width = video.videoWidth;
 		
-		if(_canvas.width <= 0) return undefined;
+		if(canvas.width <= 0) return undefined;
 
 		this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
